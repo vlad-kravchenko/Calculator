@@ -1,0 +1,108 @@
+﻿<Window x:Class="Calculator.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Calculator"
+        mc:Ignorable="d"
+		WindowStartupLocation="CenterScreen"
+        KeyDown="Window_KeyDown"
+        Title="Calculator" Height="500" Width="300" MinHeight="500" MinWidth="300">
+	<Window.Resources>
+		<ResourceDictionary>
+            <Style TargetType="Button">
+                <Setter Property="FontSize" Value="30"></Setter>
+                <Setter Property="HorizontalContentAlignment" Value="Center"></Setter>
+                <Setter Property="VerticalContentAlignment" Value="Center"></Setter>
+                <Setter Property="HorizontalAlignment" Value="Stretch"></Setter>
+                <Setter Property="VerticalAlignment" Value="Stretch"></Setter>
+                <Setter Property="Margin" Value="2,2,2,2"></Setter>
+            </Style>
+        </ResourceDictionary>
+	</Window.Resources>
+    <Grid>
+		<Grid.RowDefinitions>
+			<RowDefinition></RowDefinition>
+			<RowDefinition></RowDefinition>
+			<RowDefinition></RowDefinition>
+			<RowDefinition></RowDefinition>
+			<RowDefinition></RowDefinition>
+			<RowDefinition></RowDefinition>
+			<RowDefinition></RowDefinition>
+			<RowDefinition></RowDefinition>
+			<RowDefinition></RowDefinition>
+		</Grid.RowDefinitions>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition></ColumnDefinition>
+			<ColumnDefinition></ColumnDefinition>
+			<ColumnDefinition></ColumnDefinition>
+			<ColumnDefinition></ColumnDefinition>
+			<ColumnDefinition></ColumnDefinition>
+		</Grid.ColumnDefinitions>
+
+		<TextBox Name="Expression" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="5" FontSize="30" Margin="2,0,2,0" IsEnabled="False"></TextBox>
+        <TextBlock Name="Result" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="5" FontSize="30" TextAlignment="Right" Margin="2,0,2,0"></TextBlock>
+
+        <Button Grid.Row="2" Grid.Column="0" Name="Plus" Click="Simple_Click">+</Button>
+        <Button Grid.Row="2" Grid.Column="1" Name="Minus" Click="Simple_Click">-</Button>
+        <Button Grid.Row="2" Grid.Column="2" Name="Mul" Click="Simple_Click">*</Button>
+        <Button Grid.Row="2" Grid.Column="3" Name="Div" Click="Simple_Click">/</Button>
+		<Button Grid.Row="2" Grid.Column="4" Name="GetResult" Click="GetResult_Click">=</Button>
+
+		<Button Grid.Row="5" Grid.Column="1" Name="One" Click="Number_Click">1</Button>
+        <Button Grid.Row="5" Grid.Column="2" Name="Two" Click="Number_Click">2</Button>
+        <Button Grid.Row="5" Grid.Column="3" Name="Three" Click="Number_Click">3</Button>
+        <Button Grid.Row="6" Grid.Column="1" Name="Four" Click="Number_Click">4</Button>
+        <Button Grid.Row="6" Grid.Column="2" Name="Five" Click="Number_Click">5</Button>
+        <Button Grid.Row="6" Grid.Column="3" Name="Six" Click="Number_Click">6</Button>
+        <Button Grid.Row="7" Grid.Column="1" Name="Seven" Click="Number_Click">7</Button>
+        <Button Grid.Row="7" Grid.Column="2" Name="Eight" Click="Number_Click">8</Button>
+        <Button Grid.Row="7" Grid.Column="3" Name="Nine" Click="Number_Click">9</Button>
+        <Button Grid.Row="8" Grid.Column="2" Name="Zero" Click="Number_Click">0</Button>
+
+        <Button Grid.Row="4" Grid.Column="3" Name="Column" FontSize="20" Click="Simple_Click">,</Button>
+        <Button Grid.Row="8" Grid.Column="1" Name="LeftRB" Click="Simple_Click">(</Button>
+        <Button Grid.Row="8" Grid.Column="3" Name="RightRB" Click="Simple_Click">)</Button>
+        <Button Grid.Row="8" Grid.Column="0" Name="SqrtN" Click="SqrtN_Click">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock FontSize="15">n</TextBlock>
+                <TextBlock FontSize="30">√</TextBlock>
+            </StackPanel>
+        </Button>
+        <Button Grid.Row="7" Grid.Column="0" Name="Sqrt" Click="Sqrt_Click">√</Button>
+		<Button Grid.Row="5" Grid.Column="5" Name="Pi" Click="Pi_Click">п</Button>
+
+		<Button Grid.Row="6" Grid.Column="5" Name="ChangeSign" Click="ChangeSign_Click">+/-</Button>
+
+        <Button Grid.Row="5" Grid.Column="0" Name="Pow2" Click="Pow2_Click">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock FontSize="30">X</TextBlock>
+                <TextBlock FontSize="15">2</TextBlock>
+            </StackPanel>
+        </Button>
+        <Button Grid.Row="6" Grid.Column="0" Name="PowN" Click="PowN_Click">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock FontSize="30">X</TextBlock>
+                <TextBlock FontSize="15">n</TextBlock>
+            </StackPanel>
+        </Button>
+        <Button Grid.Row="7" Grid.Column="5" Name="Clear" Click="Clear_Click">C</Button>
+        <Button Grid.Row="8" Grid.Column="5" Name="Remove" Click="Remove_Click">⇦</Button>
+
+        <Button Grid.Row="4" Grid.Column="0" Name="Sin" FontSize="20" Click="Math_Click">Sin</Button>
+        <Button Grid.Row="4" Grid.Column="1" Name="Cos" FontSize="20" Click="Math_Click">Cos</Button>
+        <Button Grid.Row="4" Grid.Column="2" Name="Tan" FontSize="20" Click="Math_Click">Tg</Button>
+        <Button Grid.Row="4" Grid.Column="4" Name="Log10" FontSize="20" Click="Math_Click">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock FontSize="20">Log</TextBlock>
+                <TextBlock FontSize="10" VerticalAlignment="Bottom">10</TextBlock>
+            </StackPanel>
+        </Button>
+
+        <Button Grid.Row="3" Grid.Column="0" Name="Mod" FontSize="20" Click="Mod_Click">Mod</Button>
+        <Button Grid.Row="3" Grid.Column="1" Name="Round" FontSize="20" Click="Round_Click">,⇦</Button>
+        <Button Grid.Row="3" Grid.Column="2" Name="Bin" FontSize="20" Click="Bin_Click">to2</Button>
+        <Button Grid.Row="3" Grid.Column="3" Name="Hex" FontSize="20" Click="Hex_Click">to16</Button>
+        <Button Grid.Row="3" Grid.Column="4" Name="Factorial" FontSize="20" Click="Factorial_Click">n!</Button>
+    </Grid>
+</Window>
